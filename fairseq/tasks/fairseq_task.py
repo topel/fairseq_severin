@@ -526,6 +526,7 @@ class FairseqTask(object):
                 - logging outputs to display while training
         """
         model.train()
+        #torch.autograd.set_detect_anomaly(True)
         model.set_num_updates(update_num)
         with torch.autograd.profiler.record_function("forward"):
             with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):

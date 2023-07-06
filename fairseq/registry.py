@@ -34,7 +34,6 @@ def setup_registry(registry_name: str, base_class=None, default=None, required=F
     def build_x(cfg: Union[DictConfig, str, Namespace], *extra_args, **extra_kwargs):
         if isinstance(cfg, DictConfig):
             choice = cfg._name
-
             if choice and choice in DATACLASS_REGISTRY:
                 from_checkpoint = extra_kwargs.get("from_checkpoint", False)
                 dc = DATACLASS_REGISTRY[choice]

@@ -21,11 +21,9 @@ from fairseq_cli.train import main as pre_main
 
 logger = logging.getLogger("fairseq_cli.hydra_train")
 
-
 @hydra.main(config_path=os.path.join("..", "fairseq", "config"), config_name="config")
 def hydra_main(cfg: FairseqConfig) -> float:
     _hydra_main(cfg)
-
 
 def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
     add_defaults(cfg)
@@ -73,16 +71,14 @@ def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
 
     return best_val
 
-
 def cli_main():
     try:
         from hydra._internal.utils import get_args
 
-        cfg_name = get_args().config_name or "config"
+        cfg_name = get_args().config_name
     except:
         logger.warning("Failed to get config name from hydra args")
         cfg_name = "config"
-
     hydra_init(cfg_name)
     hydra_main()
 

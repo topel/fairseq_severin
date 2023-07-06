@@ -51,6 +51,9 @@ from .positional_encoding import (
     RelPositionalEncoding,
 )
 
+from .multihead_attention_wavlm import MultiheadAttentionGRPB
+
+
 __all__ = [
     "AdaptiveInput",
     "AdaptiveSoftmax",

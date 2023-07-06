@@ -14,6 +14,7 @@ from .add_target_dataset import AddTargetDataset
 from .append_token_dataset import AppendTokenDataset
 from .audio.raw_audio_dataset import BinarizedAudioDataset, FileAudioDataset
 from .audio.hubert_dataset import HubertDataset
+from .audio.utterance_mixing_dataset import UtteranceMixingDataset
 from .backtranslation_dataset import BacktranslationDataset
 from .bucket_pad_length_dataset import BucketPadLengthDataset
 from .colorize_dataset import ColorizeDataset
@@ -134,4 +135,5 @@ __all__ = [
     "TransformEosConcatLangPairDataset",
     "TruncateDataset",
     "TruncatedDictionary",
+    "UtteranceMixingDataset",
 ]

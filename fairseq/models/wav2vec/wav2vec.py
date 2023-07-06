@@ -400,10 +400,11 @@ class ConvFeatureExtractionModel(nn.Module):
     def forward(self, x):
         # BxT -> BxCxT
         x = x.unsqueeze(1)
-
+        print(conv)
         for conv in self.conv_layers:
             residual = x
             x = conv(x)
+            print(x.size())
             if self.skip_connections and x.size(1) == residual.size(1):
                 tsz = x.size(2)
                 r_tsz = residual.size(2)
@@ -479,6 +480,7 @@ class ConvAggegator(nn.Module):
         for rproj, conv in zip(self.residual_proj, self.conv_layers):
             residual = x
             x = conv(x)
+            print(x.size())
             if self.skip_connections:
                 if rproj is not None:
                     residual = rproj(residual)
