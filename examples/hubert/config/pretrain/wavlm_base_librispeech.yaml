@@ -48,12 +48,12 @@ criterion:
   pred_nomask_weight: 0.0
   loss_weights: [10,]
 
-checkpoint:
-  finetune_from_model: true
+#checkpoint:
+#  finetune_from_model: true
 
 optimization:
-  #max_update: 400000
-  max_update: 800000
+  max_update: 400000
+  #max_update: 800000
   lr: [0.0005]
   clip_norm: 10.0
 
@@ -65,9 +65,9 @@ optimizer:
 
 lr_scheduler:
   _name: polynomial_decay
-  #warmup_updates: 32000
-  warmup_updates: 0
-  min_lr: 1e-04
+  warmup_updates: 32000
+  #warmup_updates: 0
+  #min_lr: 1e-04
 
 model:
   _name: wavlm
