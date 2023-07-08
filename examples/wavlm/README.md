@@ -456,6 +456,6 @@ max_layer = 4
 
 with torch.no_grad():
   features, _ = model.extract_features(waveforms,None,max_layer+1)
-```
 
 feat = features[4]
+```
