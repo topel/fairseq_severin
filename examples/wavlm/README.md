@@ -42,6 +42,7 @@ python random_script.py ${tsv_dir} ${cluster_nb}
 ```
 Finally, using absolute paths for specifying folders or files location might simplifly a lot the application of this tutorial.
 
+All the scripts used to prepare data for pretraining are available in this directory (in [simple_kmeans](https://github.com/SevKod/fairseq/tree/main/examples/hubert/simple_kmeans))
 
 ## STEP 1 : Structure your dataset
 
@@ -423,4 +424,38 @@ Great ! You have completed the pretraining, and should now posess a **.pt** file
 
 In order to simplify as much as possible the feature extraction, and be completely independant of any fairseq dependency, converting your checkpoint is preferable. 
 
-In this short section, we will use the script **** to create a new checkpoint that will contain the **name** of our model (**WavLMModel**), its **configuration**, and of course, the **state_dict** containing the weights !
+In this short section, we will use the script **convert_fairseq_torch.py** to create a new checkpoint that will contain the **name** of our model (**WavLMModel**), its **configuration**, and of course, the **state_dict** containing the weights ! 
+
+Simply run : 
+
+ ```python
+fairseq_pt=location/to/fairseq/pt
+
+python convert_fairseq_torch.py ${fairseq_pt}
+```
+
+A **.ckpt** carrying the same name as your fairseq checkpoint should be created.
+
+Then, to use extract representations, use the following PyTorch script :
+
+ ```python
+import torch 
+import torchaudio
+from torchaudio.models.wav2vec2 import wav2vec2_model
+
+ckpt_name = 'your_new_ckpt'
+
+ckpt = torch.load(ckpt_name)
+model = wav2vec2_model(**ckpt['config'])
+model.load_state_dict(ckpt['state_dict'])
+model.eval() #Your model is ready to be used !
+
+#Specify in advance the layer you want to extract your representations from (0 to 11), to truncate the unused encoder layers
+max_layer = 4
+#Extract features using :
+
+with torch.no_grad():
+  features, _ = model.extract_features(waveforms,None,max_layer+1)
+```
+
+feat = features[4]
