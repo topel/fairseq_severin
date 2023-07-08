@@ -410,7 +410,7 @@ kmean_train_ratio=0.1
 label_location= location/to/labels
 
 python fairseq/fairseq_cli/hydra_train.py \
- --config-dir fairseq/examples/hubert/config/pretrain \
+ --config-dir fairseq/examples/wavlm/config/pretrain \
  --config-name wavlm_base_librispeech \
  task.data=$(pwd)/${tsv_dir} task.label_dir=$(pwd)/label task.labels='["km"]' model.label_rate=50
 ```
