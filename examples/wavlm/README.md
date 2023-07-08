@@ -436,7 +436,7 @@ python convert_fairseq_torch.py ${fairseq_pt}
 
 A **.ckpt** carrying the same name as your fairseq checkpoint should be created.
 
-Then, to use extract representations, use the following PyTorch script :
+Then, to extract representations, use the following PyTorch script :
 
  ```python
 import torch 
