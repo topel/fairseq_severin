@@ -12,7 +12,7 @@ Prerequisites :
 - The tutorial assumes your audio files are sampled at **16000 Hz**, and are of duration **higher** than at least **25 ms**. Furthermore, the pretraining was tested for audio files carrying only a single extension type : Either the **.flac** or **.wav** format. The pretraining might behave differently (or even crash) if these conditions are not respected. Make sure to uniformize your dataset by either over/down sampling your files (to match the 16 kHz), and/or converting them to the same format. 
 
 
-The location of your audio files do not really matter AS LONG as they can be retrieved from an unique path. 
+The location of your audio files does not really matter AS LONG as they can be retrieved from an unique path. 
 **Ex :**
  * **unique/location/to/audio**
     * **dir1**
